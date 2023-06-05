@@ -23,6 +23,16 @@ router.post('/add-cat', (req, res) => {
     res.redirect('/');
 });
 
+router.get('/:catId/edit', (req, res) => {
+    const cat = catManager.getOne(req.params.catId);
+    
+    if(!cat){
+        return res.redirect('/404');
+    }
+
+    res.render('editCat');
+});
+
 router.get('/add-breed', (req, res) => {
     res.render('addBreed');
 });
