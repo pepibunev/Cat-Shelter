@@ -1,18 +1,11 @@
-const breed = [{
+const Breed = require('../models/Breed');
 
-}];
+exports.getAll = async () => await Breed.find().lean();
 
-exports.getAll = exports.getAll = () => breed.slice();
+exports.create = (breedData) => {
+    const breed = new Breed(breedData);
+    console.log(breed);
 
-exports.getOne = (breedId) => breed.find(x => x.id === breedId);
-
-exports.create = (catData) => {
-    const newCat = {
-        id: uniqid,
-        ...catData
-    }
-
-    cats.push(newCat);
-    console.log(newCat);
-    return newCat;
+    return breed.save();
+    
 };

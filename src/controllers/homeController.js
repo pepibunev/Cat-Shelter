@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const catsManager = require('../managers/catManager');
 
-router.get('/', (req, res) => {
-    const cats = catsManager.getAll();
+router.get('/', async (req, res) => {
+    const cats = await catsManager.getAll();
 
     res.render('index', { cats });
 });

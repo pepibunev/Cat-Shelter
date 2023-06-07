@@ -1,25 +1,15 @@
-const uniqid = require('uniqid');
-const cats = [
-{
-    id: '1321412542',
-    name: 'Bombay Cat',
-    description: 'Dominant and aggressive to other cats. Will probably eat you in your sleep.',
-    imageUrl: "https://cdn.pixabay.com/photo/2014/04/13/20/49/cat-323262_1280.jpg",
-    breed: 'Orange',
-},
-];
+const Cat = require('../models/Cat');
 
-exports.getAll = () => cats.slice();
+exports.getAll = async () => await Cat.find().lean();
 
-exports.getOne = (catId) => cats.find(x => x.id === catId);
+exports.getOne = (catId) => Cat.findById(catId);
+
+exports.deleteOne = (catId) => Cat.deleteById(catId); 
 
 exports.create = (catData) => {
-    const newCat = {
-        id: uniqid,
-        ...catData
-    }
+    const cat = new Cat(catData);
+    console.log(cat);
 
-    cats.push(newCat);
-    console.log(newCat);
-    return newCat;
+    return cat.save();
+    
 };
