@@ -5,7 +5,7 @@ const breedManager = require('../managers/breedManager');
 
 router.get('/add-cat', async (req, res) => {
     const breed = await breedManager.getAll();
-    res.render('addCat', { breed});
+    res.render('addCat', { breed });
 });
 
 router.post('/add-cat', async (req, res) => {
@@ -40,7 +40,7 @@ router.get('/add-breed', (req, res) => {
 });
 
 router.post('/add-breed', async (req, res) => {
-    const { name } = req.body;
+    const name = req.body.name;
 
     await breedManager.create({
         name,
